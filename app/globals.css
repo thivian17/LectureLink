@@ -24,3 +24,74 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* ===================================
+   LECTURELINK CUSTOM ANIMATIONS
+   =================================== */
+
+@keyframes waveform {
+  0%, 100% {
+    height: 20%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+.waveform-animated > div {
+  animation: waveform 0.8s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.waveform-animated > div:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.waveform-animated > div:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+.waveform-animated > div:nth-child(4n) {
+  animation-delay: 0.15s;
+}
+
+.waveform-animated > div:nth-child(5n) {
+  animation-delay: 0.25s;
+}
+
+.waveform-animated > div:nth-child(7n) {
+  animation-delay: 0.3s;
+}
+
+.waveform-animated > div:nth-child(11n) {
+  animation-delay: 0.35s;
+}
+
+/* Pulse animation for recording indicator */
+@keyframes pulse-red {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.recording-pulse {
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
