@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Notability-inspired warm blue palette */
+  --primary-blue: #4A90E2;
+  --primary-blue-dark: #357ABD;
+  --primary-blue-light: #6BA3E8;
+  --accent-coral: #FF6B6B;
+  --accent-yellow: #FFD93D;
+  --accent-green: #51CF66;
+  --neutral-warm: #F8F9FA;
+  --neutral-gray: #E9ECEF;
+  --text-dark: #2C3E50;
+  --text-medium: #546E7A;
+  --text-light: #90A4AE;
+  
+  --background: #FAFBFC;
+  --foreground: #2C3E50;
 }
 
 @theme inline {
@@ -12,34 +25,33 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--neutral-warm);
+  color: var(--text-dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
 /* ===================================
-   LECTURELINK CUSTOM ANIMATIONS
+   SMOOTH ANIMATIONS
    =================================== */
 
 @keyframes waveform {
   0%, 100% {
-    height: 20%;
+    height: 30%;
+    opacity: 0.6;
   }
   50% {
     height: 100%;
+    opacity: 1;
   }
 }
 
 .waveform-animated > div {
-  animation: waveform 0.8s ease-in-out infinite;
-  opacity: 0.7;
+  animation: waveform 1.2s ease-in-out infinite;
+  background: linear-gradient(180deg, var(--primary-blue-light), var(--primary-blue));
+  border-radius: 4px;
 }
 
 .waveform-animated > div:nth-child(2n) {
@@ -62,29 +74,27 @@ body {
   animation-delay: 0.3s;
 }
 
-.waveform-animated > div:nth-child(11n) {
-  animation-delay: 0.35s;
-}
-
-/* Pulse animation for recording indicator */
-@keyframes pulse-red {
+/* Recording pulse animation */
+@keyframes pulse-recording {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
 .recording-pulse {
-  animation: pulse-red 1.5s ease-in-out infinite;
+  animation: pulse-recording 1.5s ease-in-out infinite;
 }
 
-/* Smooth fade-in animation */
+/* Gentle fade-in for page loads */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -93,5 +103,50 @@ body {
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Floating animation for hero elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--neutral-gray) 0%,
+    var(--neutral-warm) 50%,
+    var(--neutral-gray) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Smooth hover transitions */
+.smooth-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(74, 144, 226, 0.15);
 }
